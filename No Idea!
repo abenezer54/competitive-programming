@@ -1,0 +1,16 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+n, m = map(int, input().split())
+Arr = list(map(int,input().split()))
+A = list(set(map(int,input().split())))
+B = list(set(map(int,input().split())))
+happiness = 0
+
+
+for i in Arr:
+    if i in A:
+        happiness += 1
+    elif i in B:
+        happiness -= 1 
+    else:
+        continue 
+print(happiness)  
