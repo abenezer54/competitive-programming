@@ -1,0 +1,6 @@
+n = int(input())
+a = set(list(input().split()))
+m = int(input())
+b = set(list(input().split()))
+aUnionb = set(a.union(b))
+print(len(aUnionb))
