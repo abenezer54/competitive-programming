@@ -1,6 +1,6 @@
 #Using Ceil() function
 from math import ceil
-m, n, a = list(map(int, input().split()))
+m, n, a = map(int, input().split())
 print(ceil(m/a)*ceil(n/a))
 #Using Loop
 # row = 0
