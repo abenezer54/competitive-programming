@@ -5,7 +5,8 @@ class Solution:
         count = 0
         dic = Counter(nums) #counts the number of repitions for each unique keys
         for i in dic.values():
-            count += (i * (i-1))//2 #formula to find pairs with number of repititons 
+            count += (i * (i-1))//2 #formula to find pairs with number of repititons
+                                    #by using artithmetic sum
         return count
         #Using Dictionary
         # dic = {}
