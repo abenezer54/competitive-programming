@@ -1,6 +1,7 @@
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
-        points = sorted(points, key = lambda x : x[0]*x[0] + x[1]*x[1])
+        from math import sqrt
+        points = sorted(points, key = lambda x : sqrt(x[0]**2 + x[1]**2))
         return points[:k]
 #         from math import sqrt
 #         distances = []
