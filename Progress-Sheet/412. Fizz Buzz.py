@@ -10,5 +10,4 @@ class Solution:
                 answer.append("Buzz")
             else:
                 answer.append(str(i))
-        print(answer)
         return answer
