@@ -1,22 +1,24 @@
+from collections import Counter
 class Solution:
     def frequencySort(self, s: str) -> str:
-        dic = {}
-        for i in s:
-            if i in dic:
-                dic[i] += 1
-            else:
-                dic[i] = 1
+        # dic = {}
+        # for i in s:
+        #     if i in dic:
+        #         dic[i] += 1
+        #     else:
+        #         dic[i] = 1
+        dic = Counter(s)
         temp = []
         for key, value in dic.items():
             temp.append([key, value])
         print(temp)
-        
-        for i in range(len(temp)):
-            max_index = i
-            for j in range(i +1, len(temp)):
-                if temp[j][1] > temp[max_index][1]:
-                    max_index = j
-            temp[i], temp[max_index] = temp[max_index], temp[i]
+        temp.sort(key = lambda x : x[1], reverse=True)
+        # for i in range(len(temp)):
+        #     max_index = i
+        #     for j in range(i +1, len(temp)):
+        #         if temp[j][1] > temp[max_index][1]:
+        #             max_index = j
+        #     temp[i], temp[max_index] = temp[max_index], temp[i]
         print(temp)
         ans = ""
         for i, j in temp:
