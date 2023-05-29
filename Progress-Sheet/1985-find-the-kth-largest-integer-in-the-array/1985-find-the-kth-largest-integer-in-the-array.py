@@ -3,15 +3,20 @@ class Solution:
         nums = sorted(map(int, nums), reverse=True)
         return str(nums[k-1])
     
-#With out casting the integers
-#         from functools import cmp_to_key
+# With out casting or mapping the strings to integer
+        
 #         def mycmp(a, b):
-#             if int(a) > int(b):
+#             if len(a) > len(b):
 #                 return -1
-#             elif int(a) < int(b):
+#             elif len(a) < len(b):
 #                 return 1
 #             else:
-#                 return 0
+#                 if a > b:
+#                     return -1
+#                 elif a < b:
+#                     return 1
+#                 else:
+#                     return 0
 #         nums.sort(key = cmp_to_key(mycmp))
         
 #         return nums[k-1]
