@@ -7,5 +7,5 @@ class Solution:
                 evens.append(num)
             else:
                 odds.append(num)
-        evens.extend(odds)
-        return evens
+                
+        return evens + odds
