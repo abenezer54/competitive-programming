@@ -1,13 +1,19 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        arr = [char.lower() for char in s if char.isalnum()]
-        print(arr)
-        left = 0
-        right = len(arr) - 1
-        isPal = True
-        while left <= right:
-            if arr[left] != arr[right]:
-                isPal = False
-            left += 1
-            right -= 1
-        return True if isPal else False
+        l = 0
+        r = len(s) - 1
+        while l <= r:
+            if s[l].isalnum() and s[r].isalnum():
+                if  s[l].lower() != s[r].lower():
+                    return False
+                else:
+                    l += 1
+                    r -= 1
+            else:
+                if not s[l].isalnum():
+                    l += 1
+                if not s[r].isalnum():
+                    r -= 1  
+
+            
+        return True
