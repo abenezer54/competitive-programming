@@ -1,13 +1,17 @@
 class Solution:
     def makeSmallestPalindrome(self, s: str) -> str:
-        l = 0
-        r = len(s) - 1
-        while l < r:
-            if s[l] != s[r]:
-                if s[l] < s[r]:
-                    s = s[:r] + s[l] + s[r+1:]
+        arr = [x for x in s]
+        
+        i = 0
+        j = len(arr) - 1
+        while i < j:
+            if arr[i] != arr[j]:
+                if arr[i] < arr[j]:
+                    arr[j] = arr[i]
                 else:
-                    s = s[:l] + s[r] + s[l+1:]
-            l += 1
-            r -= 1
-        return s
+                    arr[i] = arr[j]
+            
+            i += 1
+            j -= 1
+        
+        return ''.join(arr)
