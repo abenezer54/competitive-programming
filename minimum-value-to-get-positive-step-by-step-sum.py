@@ -1,12 +1,11 @@
 class Solution:
     def minStartValue(self, nums: List[int]) -> int:
-        N = len(nums)
-        prefix = [0] * (N + 1)
-        for i in range(N):
-            prefix[i + 1] = prefix[i] + nums[i]
-        prefix.remove(0)
-
-        if min(prefix) < 0:
-            return abs(min(prefix)) + 1
-
+        currentSum = 0
+        minValue = float("inf")
+        for i in range(len(nums)):
+            currentSum += nums[i]
+            minValue = min(minValue, currentSum)
+            
+        if minValue < 1:
+            return abs(minValue) + 1
         return 1
