@@ -7,8 +7,8 @@ class Solution:
             prefix[trip[1]] += trip[0]
             prefix[trip[2]] -= trip[0]
         summ = 0
-        for i in range(maxValue + 2):
-            summ += prefix[i]
+        for num in prefix:
+            summ += num
             if summ > capacity:
                 return False
         
