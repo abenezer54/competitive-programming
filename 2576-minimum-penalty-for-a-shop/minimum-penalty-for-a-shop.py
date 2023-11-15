@@ -18,7 +18,6 @@ class Solution:
         ans = float("inf")
         for i in range(N + 1):
             penalty = (closePrefix[-1] - closePrefix[i]) + openPrefix[i]
-            print(penalty)
             if penalty < minPenalty:
                 minPenalty = penalty
                 ans = i
