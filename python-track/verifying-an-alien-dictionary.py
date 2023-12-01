@@ -1,15 +1,16 @@
 class Solution:
     def isAlienSorted(self, words: List[str], order: str) -> bool:
+        dic = {order[i]: i for i in range(26)}
         for i in range(len(words) - 1):
             equal = True
-            for j in range(min(len(words[i]), len(words[i+1]))):
-                if order.index(words[i][j]) != order.index(words[i+1][j]):
+            check = zip(words[i], words[i+1])
+            for a, b in check:
+                if dic[a] != dic[b]:
                     equal = False
-                if order.index(words[i][j]) > order.index(words[i+1][j]):
+                if dic[a] > dic[b]:
                     return False
-                elif order.index(words[i][j]) < order.index(words[i+1][j]):
-                    break
-                
+                elif dic[a] < dic[b]:
+                    break   
             if equal and len(words[i]) > len(words[i+1]):
                 return False
         return True
