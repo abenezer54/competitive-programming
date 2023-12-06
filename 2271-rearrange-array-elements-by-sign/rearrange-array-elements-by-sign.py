@@ -1,16 +1,17 @@
 class Solution:
     def rearrangeArray(self, nums: List[int]) -> List[int]:
-        positives = []
-        negatives = []
+        N = len(nums)
+        positive_pointer = 0
+        negative_pointer = 1
+        ans = [0] * N
+
         for num in nums:
             if num > 0:
-                positives.append(num)
+                ans[positive_pointer] = num
+                positive_pointer += 2
             else:
-                negatives.append(num)
-
-        ans = []
-        for i in range(len(positives)):
-            ans.extend([positives[i], negatives[i]])
-
+                ans[negative_pointer] = num
+                negative_pointer += 2
+                
         return ans
         
