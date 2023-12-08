@@ -1,12 +1,16 @@
 class Solution:
     def findDuplicate(self, paths: List[str]) -> List[List[str]]:
-        ans = defaultdict(list)
+        lookup = defaultdict(list)
         for path in paths:
-            path = path.split()
-            folder = path[0]
-            for i in range(1, len(path)):
-                theFile = path[i].split("(")[1][:-1]
-                ans[theFile].append(folder + "/" + path[i].split("(")[0])
+            directory, *files = path.split()
+            for _file in files:
+                num, key = _file.split("(")
+                lookup[key[:-1]].append(directory +"/" + num)
 
-        return [value for value in ans.values() if len(value) > 1]
+        ans = []
+        for value in lookup.values():
+            if len(value) > 1:
+                ans.append(value)
+
+        return ans
         
