@@ -3,9 +3,11 @@ class Solution:
         n = len(names)
         look = {heights[i]:names[i] for i in range(len(names))}
         for i in range(n):
-            for j in range(0,n - i - 1):
-                if heights[j] < heights[j + 1]:
-                    heights[j], heights[j + 1] = heights[j + 1], heights[j]
+            min_idx = i
+            for j in range(i + 1,n ):
+                if heights[min_idx] < heights[j]:
+                    min_idx = j
+            heights[min_idx], heights[i] = heights[i], heights[min_idx]
 
         for i in range(n):
             names[i] = look[heights[i]]
