@@ -1,43 +1,35 @@
 class Solution:
     def circularArrayLoop(self, nums: List[int]) -> bool:
+        # O(n) Solution 
         n = len(nums)
-        for start in range(n):
-            slow = start
-            fast = start
-            flag = True
-            if nums[start] <= 0:
-                flag = False
-            prev1 = slow
-            prev2 = fast
-            for _ in range(n):
-                slow = (slow + nums[slow]) % n
-                fast = (fast + nums[fast]) % n
-                prev2 = fast
-                if flag:
-                    if nums[slow] < 0 or nums[fast]  < 0:
+        x = 2000
+        for i in range(n):
+            j = i
+            flag = nums[j] > 0
+            while True:
+                if nums[j] <= 1000:
+                    destination = (j + nums[j]) % n
+                    nums[j] = x
+                    if j == destination:        
+                        x += 1
                         break
-                else:
-                    if nums[slow] > 0 or nums[fast]  > 0:
-                        break
-                fast = (fast + nums[fast]) % n
-                
-                # print(slow, fast)
-                if flag:
-                    if nums[fast]  < 0:
-                        break
-                else:
-                    if nums[fast]  > 0:
-                        break
-                # print(prev1, prev2)
-                if prev1 == slow or prev2 == fast:
-                    break
-                prev1 = slow
-                prev2 = fast
-                
-                if fast == slow:
-                    # print(start, prev2, fast)
-                    return True
-            # print(start)
-        return False
+                    if flag:
+                        if nums[destination] < 0:
+                            x += 1
+                            break
+                    else:
+                        if nums[destination] > 0:
+                            if nums[destination] == x:
+                                return True
+                            x += 1
+                            break
+                    
+                    j = destination
 
-        
+                else:
+                    if nums[j] == x:
+                        return True
+                    x += 1
+                    break
+
+        return False
