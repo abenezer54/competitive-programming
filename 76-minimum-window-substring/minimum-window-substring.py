@@ -6,27 +6,24 @@ class Solution:
                     return False
             return True
 
+        l, n, flag, possible, minimum_length = 0, len(s), False, [0, 0], float("inf")
         t_count = Counter(t)
         s_count = defaultdict(int)
-        ans = deque()
-        res = ""
-        length = float("inf")
-        l, n = 0, len(s)
-        for r in range(n):
-            # print(ans)
-            s_count[s[r]] += 1
-            ans.append(s[r])
     
+        for r in range(n):
+            s_count[s[r]] += 1
             while check(s_count, t_count):
-                # print("HI")
-                if length > len(ans):
-                    res = "".join(ans)
-                    length = len(ans)
-                ans.popleft()
+                flag = True
+                if r - l + 1 < minimum_length:
+                    possible = [l, r]
+                    minimum_length = r - l + 1
+
                 s_count[s[l]] -= 1
                 if s_count[s[l]] == 0:
                     s_count.pop(s[l])
                 l += 1
 
-        return res
+        if not flag:
+            return ''
+        return s[possible[0] : possible[1] + 1]
         
