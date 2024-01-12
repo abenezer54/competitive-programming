@@ -1,20 +1,22 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        count = defaultdict(int)
-        left = 0
-        maxLength = 0
-        for right, char in enumerate(s):
-            count[char] += 1
-            summ = sum(count.values())
-            maxx = max(count.values())
-            diff = summ - maxx
-            while diff > k:
-                count[s[left]] -= 1
-                summ = sum(count.values())
-                maxx = max(count.values())
-                diff = summ - maxx
-                left += 1
-            maxLength = max(maxLength, right - left +1)
-        
-        return maxLength
-        
+        l, n, count, ans = 0, len(s), defaultdict(int), 0
+
+        def check(count):
+            tot = 0
+            maxx = 0
+            for v in count.values():
+                maxx = max(maxx, v)
+                tot += v
+            return tot - maxx
+
+        for r in range(n):
+            count[s[r]] += 1
+            while check(count) > k:
+                if count[s[l]] == 1:
+                    count.pop(s[l])
+                else:
+                    count[s[l]] -= 1
+                l += 1
+            ans = max(ans, r - l + 1)
+        return ans       
