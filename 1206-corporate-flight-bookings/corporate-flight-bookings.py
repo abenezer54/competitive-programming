@@ -1,11 +1,11 @@
 class Solution:
     def corpFlightBookings(self, bookings: List[List[int]], n: int) -> List[int]:
-        prefix = [0] * (n + 2)
-        for first, last, seats  in bookings:
-            prefix[first] += seats
-            prefix[last + 1] -= seats
-        for i in range(1, n + 2):
-            prefix[i] = prefix[i - 1] + prefix[i]
+        ans = [0] * (n + 1)
+        for first, last, seats in bookings:
+            ans[first - 1] += seats
+            ans[last] -= seats
+        for i in range(1, n + 1):
+            ans[i] += ans[i - 1]
         
-        return prefix[1:-1]
+        return ans[:-1]
         
