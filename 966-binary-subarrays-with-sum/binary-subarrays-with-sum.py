@@ -1,21 +1,10 @@
 class Solution:
     def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
-        # print(nums)
-        def lessOrEqual(a, k):
-            l, ans, count, cur, n = 0, 0, 0, 0, len(a)
-            if k == -1:
-                cur = -2
-            for r in range(n):
-                cur += a[r]
-                count += 1
-                while cur > k:
-                    # print(cur, k)
-                    cur -= a[l]
-                    count -= 1
-                    l += 1
-                if k == -1:
-                    count = 0
-                ans += count
-            # print(ans)
-            return ans
-        return lessOrEqual(nums, goal) - lessOrEqual(nums, goal - 1)
+        cur_sum = ans = 0
+        count = Counter()
+        count[0] = 1
+        for i in range(len(nums)):
+            cur_sum += nums[i]
+            ans += count[cur_sum - goal]
+            count[cur_sum] += 1
+        return ans
