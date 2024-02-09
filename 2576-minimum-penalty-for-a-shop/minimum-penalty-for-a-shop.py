@@ -1,26 +1,23 @@
 class Solution:
     def bestClosingTime(self, customers: str) -> int:
-        N = len(customers)
-        openPrefix = [0] * (N + 1)
-        closePrefix = [0] * (N + 1)
-        
-        for i, char in enumerate(customers):
-            if char == "Y":
-                closePrefix[i + 1] = 1
+        n = len(customers)
+        s = [0] * (n + 1)
+        for i in range(n - 1, -1, -1):
+            if customers[i] == "Y":
+                s[i] = 1 + s[i + 1]
             else:
-                openPrefix[i + 1] = 1
-    
-        for i in range(1, N + 1):
-            openPrefix[i] = openPrefix[i - 1] + openPrefix[i]
-            closePrefix[i] = closePrefix[i - 1] + closePrefix[i]
-
-        minPenalty = float("inf")
-        ans = float("inf")
-        for i in range(N + 1):
-            penalty = (closePrefix[-1] - closePrefix[i]) + openPrefix[i]
-            if penalty < minPenalty:
-                minPenalty = penalty
+                s[i] = s[i + 1]
+                
+        cur = 0
+        minn = float("inf")
+        ans = 0
+        for i in range(n + 1):      
+            penalty = cur + s[i]
+            if penalty < minn:
                 ans = i
+                minn = penalty   
+            if i < n and customers[i] == "N":
+                cur += 1
+
         return ans
-        
         
