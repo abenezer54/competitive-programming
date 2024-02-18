@@ -1,11 +1,11 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        dic = {")": "(", "]" : "[", "}" : "{"}
+        look  = {")": "(", "]" : "[", "}" : "{"}
         stack = []
         for char in s:
             if char in ["(", "[", "{"]:
                 stack.append(char)
-            elif stack and stack[-1] == dic[char]:
+            elif stack and stack[-1] == look[char]:
                 stack.pop()
             else:
                 return False
