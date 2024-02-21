@@ -1,7 +1,7 @@
 class Solution:
     def findMinArrowShots(self, a: List[List[int]]) -> int:
         n = len(a)
-        a.sort(key=lambda x:( x[0], x[1]))
+        a.sort(key=lambda x:x[0])
         ans = 1
         minn = a[0][1]
         # print(a)
