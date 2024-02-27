@@ -1,12 +1,11 @@
 class Solution:
     def kthGrammar(self, n: int, k: int) -> int:
-        def find(n, k):
-            if n == 1:
-                return 0
+        print(n, k)
+        if n == 1: return 0
 
-            if k & 1:
-                return find(n - 1, (k + 1) // 2)
-            else:
-                return 1 - find(n - 1, (k + 1) // 2)
-        return find(n, k)
+        if k % 2 == 0: 
+            return 1 - self.kthGrammar(n - 1, ceil(k / 2))
+        else:
+            return self.kthGrammar(n - 1, ceil(k / 2))
+        
         
