@@ -7,13 +7,14 @@
 class Solution:
     def sumEvenGrandparent(self, root: TreeNode) -> int:
         ans = 0
-        def dfs(node, par, gpar):
-            nonlocal ans
-            if node:
-                if gpar and gpar.val % 2 == 0:
-                    ans += node.val
-                dfs(node.left, node, par)
-                dfs(node.right, node, par)
-        dfs(root, None, None)
+        stack = [(root, None, None)]
+        while stack:
+            cur, par, gpar = stack.pop()
+            if gpar and gpar.val % 2 == 0:
+                ans += cur.val
+            if cur.left:
+                stack.append((cur.left, cur, par))
+            if cur.right:
+                stack.append((cur.right, cur, par))
         return ans
         
