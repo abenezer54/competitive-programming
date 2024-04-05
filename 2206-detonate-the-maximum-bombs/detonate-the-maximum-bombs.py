@@ -11,7 +11,7 @@ class Solution:
                     adj[i].append(j)
                 if d <= bombs[j][2]:
                     adj[j].append(i)
-        print(adj)           
+     
         ans = 1
         for i in range(n):
             cnt = 1
