@@ -10,14 +10,13 @@ class Solution:
         ans = []
         que = deque([root])
         while que:
-            cur = []
+            ans.append([node.val for node in que])
             que_length = len(que)
             for _ in range(que_length):
                 node = que.popleft()
-                cur.append(node.val)
                 if node.left:
                     que.append(node.left)
                 if node.right:
                     que.append(node.right)
-            ans.append(cur)
+
         return ans
