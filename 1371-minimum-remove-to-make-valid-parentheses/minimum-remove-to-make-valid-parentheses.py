@@ -1,6 +1,6 @@
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
-        rem = set()
+        s = list(s)
         stack = []
         for i in range(len(s)):
             if s[i] == "(":
@@ -9,12 +9,10 @@ class Solution:
                 if stack:
                     stack.pop()
                 else:
-                    rem.add(i)
-        rem.update(stack)
+                    s[i] = ''
 
-        ans = []
-        for i in range(len(s)):
-            if not i in rem:
-                ans.append(s[i])
-        return ''.join(ans)
+        while stack:
+            s[stack.pop()] = ''
+            
+        return ''.join(s)
         
