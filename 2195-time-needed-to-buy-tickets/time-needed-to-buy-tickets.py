@@ -1,15 +1,13 @@
 class Solution:
     def timeRequiredToBuy(self, tickets: List[int], k: int) -> int:
-        n, ans = len(tickets), 0
+        n = len(tickets)
         que = deque([i for i in range(n)])
-        
-        while True:
-            cur = que.popleft()
+        ans = 0
+        while tickets[k]:
+            tickets[que[0]] -= 1
+            rear = que.popleft()
+            if tickets[rear] > 0:
+                que.append(rear)
             ans += 1
-            tickets[cur] -= 1
-            if tickets[cur]:
-                que.append(cur)
-            elif cur == k:
-                return ans           
- 
+        return ans
         
