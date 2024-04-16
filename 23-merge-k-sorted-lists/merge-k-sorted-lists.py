@@ -20,7 +20,6 @@ class Solution:
             if head.next:
                 heappush(heap, (head.next.val, i, head.next))
                 i += 1
-            head.next = None
             temp = head
 
         return dummy.next
