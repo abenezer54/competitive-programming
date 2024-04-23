@@ -4,9 +4,17 @@ class Solution:
         par = list(range(n))
         rank = [0] * n
         def find(v):
-            while v != par[v]:
-                v = par[v]
-            return v
+            root = v
+            while root != par[root]:
+                root = par[root]
+
+            while v != root:
+                nxt = par[v]
+                par[v] = root
+                v = nxt
+
+            return root
+
         for i in range(n):
             for j in range(n):
                 if isConnected[i][j]:
