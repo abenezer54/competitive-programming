@@ -7,10 +7,10 @@ class Solution:
         for a, b in richer:
             adj[a].append(b)
             ind[b] += 1
-            
+
         que = deque()
         for i in range(n):
-            if  not ind[i]:
+            if not ind[i]:
                 que.append(i)
         
         while que:
