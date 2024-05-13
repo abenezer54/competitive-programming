@@ -12,7 +12,6 @@ class Solution:
                     ans = max(ans, dp(j) + 1)
             memo[i] = ans
             return memo[i]
-        dp(0)
 
         res = 0
         for i in range(len(nums)):
