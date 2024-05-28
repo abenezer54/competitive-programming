@@ -1,33 +1,36 @@
 class Trie:
 
     def __init__(self):
-        self.root = {}
+        self.root = [None] * 27
 
 
     def insert(self, word: str) -> None:
         cur = self.root
         for ch in word:
-            if ch not in cur:
-                cur[ch] = {}
-            cur = cur[ch]
-        cur[1] = 1
+            idx = ord(ch) - ord('a')
+            if not cur[idx]:
+                cur[idx] = [None] * 27
+            cur = cur[idx]
+        cur[-1] = True
         
 
     def search(self, word: str) -> bool:
         cur = self.root
         for ch in word:
-            if ch not in cur:
+            idx = ord(ch) - ord('a')
+            if not cur[idx]:
                 return False
-            cur = cur[ch]
-        return 1 in cur
+            cur = cur[idx]
+        return cur[-1]
         
 
     def startsWith(self, prefix: str) -> bool:
         cur = self.root
         for ch in prefix:
-            if ch not in cur:
+            idx = ord(ch) - ord('a')
+            if not cur[idx]:
                 return False
-            cur = cur[ch]
+            cur = cur[idx]
         return True
 
 
