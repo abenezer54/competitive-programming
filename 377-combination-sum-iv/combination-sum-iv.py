@@ -1,17 +1,10 @@
 class Solution:
     def combinationSum4(self, nums: List[int], target: int) -> int:
-        ans = 0
-        memo = {}
-        def dp(num, depth):
-            if num == target:
-                return 1
-            if (num, depth) in memo:
-                return memo[(num, depth)]
-            cur = 0
-            for i in nums:
-                if num + i <= target:
-                    cur += dp(num + i, depth + 1)
-            memo[(num, depth)] = cur
-            return cur
-        return dp(0, 0)
+        dp = [0] * (target + 1)
+        dp[0] = 1
+        for i in range(1, target + 1):
+            for num in nums:
+                if i - num >= 0:
+                    dp[i] += dp[i - num]
+        return dp[-1]
         
