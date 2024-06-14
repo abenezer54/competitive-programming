@@ -14,7 +14,7 @@ class Solution:
                 if j == n:
                     break
 
-                if j < n and mx < arr[i] / arr[j]:
+                if j < n and mx * arr[j] < arr[i]:
                     mx = arr[i] / arr[j]
                     nm, dm = i, j
                 
@@ -24,4 +24,3 @@ class Solution:
                 r = mid
             else:
                 l = mid
-        return []
