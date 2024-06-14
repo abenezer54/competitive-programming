@@ -14,7 +14,7 @@ class Solution:
                 if j == n:
                     break
 
-                if j < n and mx * arr[j] < arr[i]:
+                if mx * arr[j] < arr[i]:
                     mx = arr[i] / arr[j]
                     nm, dm = i, j
                 
