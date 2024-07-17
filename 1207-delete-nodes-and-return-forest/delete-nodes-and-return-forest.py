@@ -6,22 +6,32 @@
 #         self.right = right
 class Solution:
     def delNodes(self, root: Optional[TreeNode], to_delete: List[int]) -> List[TreeNode]:
-        td = set(to_delete)
-        ans = []
-        def dfs(cur, hr):
-            if cur:
-                if cur.val in td:
-                    dfs(cur.left, False)
-                    dfs(cur.right, False)
-                    return None
-                else:
-                    left = dfs(cur.left, True)
-                    right = dfs(cur.right, True)
-                    cur.left = left
-                    cur.right = right
-                    if hr:
-                        return cur
+        to_delete = set(to_delete)
+        stack = [root]
+        ans = [root] if root.val not in to_delete else []
+        parent = defaultdict(TreeNode)
+        while stack:
+            cur = stack.pop()
+            if cur.right:
+                parent[cur.right] = cur
+                stack.append(cur.right)
+                
+            if cur.left:
+                parent[cur.left] = cur
+                stack.append(cur.left)
+                
+            if cur.val in to_delete:
+                if cur.right and cur.right.val not in to_delete:
+                    ans.append(cur.right)
+
+                if cur.left and cur.left.val not in to_delete:
+                    ans.append(cur.left)
+
+                if cur in parent:
+                    if parent[cur].right == cur:
+                        parent[cur].right = None
                     else:
-                        ans.append(cur)
-        dfs(root, False)
+                        parent[cur].left = None    
+        
         return ans
+        
