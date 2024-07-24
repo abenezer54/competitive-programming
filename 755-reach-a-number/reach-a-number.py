@@ -1,8 +1,9 @@
 class Solution:
     def reachNumber(self, target: int) -> int:
         target = abs(target)
-        k = 1
-        while (k * (k + 1)) // 2 < target or (((k * (k + 1)) // 2) - target) % 2 != 0:
+        k = sm = 1
+        while sm < target or (sm - target) % 2 != 0:
             k += 1
+            sm += k
         return k
         
